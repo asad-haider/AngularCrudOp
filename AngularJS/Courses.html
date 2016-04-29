@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html ng-app="coursePage">
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+    <script src="course.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+</head>
+<body ng-controller="mainController">
+
+   <div class="container">
+       <ul class="nav nav-tabs">
+           <li role="presentation"><a href="Index.html">Home</a></li>
+           <li role="presentation"><a href="StudentRegistrationForm.html">Students</a></li>
+           <li role="presentation" class="active"><a href="Courses.html">Courses</a></li>
+       </ul>
+
+   </div>
+
+    <div class="container">
+
+        <h2>Available Courses</h2>
+
+    </div>
+
+    <div class="container" ng-hide="showInsertForm">
+        <nav class="navbar">
+            <button type="button" class="btn btn-default navbar-btn" 
+                    ng-click="showForm()">Add Course</button>
+            <button type="button" class="btn btn-default navbar-btn">Delete All Courses</button>
+        </nav>
+
+        <table class="table table-hover" ng-model="courses">
+            <tr>
+                <th>
+                    Course ID
+                </th>
+                <th>
+                    Course
+                </th>
+                <th>
+                    Subject
+                </th>
+            </tr>
+
+            <tr ng-repeat="course in courses" ng-click="tableRowClick(course)">
+                <td>
+                    {{course.id}}
+                </td>
+                <td>
+                    {{course.name}}
+                </td>
+                <td>
+                    {{course.subject}}
+                </td>
+
+            </tr>
+        </table>
+   
+        <br />
+        <h5>*Note: If you want to Update or Delete Course, Click on the particular Course</h5>
+
+     </div>
+
+    <div class="container" style="border:1px solid black; width:80%;
+                padding:0px 20px 30px 20px;" ng-show="showInsertForm">
+        <h3>
+            Course Information:
+        </h3>
+
+        <div>
+            <form>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control"
+                           id="name" placeholder="Enter Course Name"
+                           ng-model="courseName">
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" class="form-control" ng-model="subjectName"
+                           id="subject" placeholder="Enter Subject Name">
+                </div>
+
+                <button type="button" class="btn btn-default"
+                        ng-show="hideUpdateForm"
+                        ng-click="insertBtnClicked()">
+                    Submit
+                </button>
+                <button type="button" class="btn btn-default"
+                        ng-click="updateBtnClicked()"
+                        ng-hide="hideUpdateForm"
+                        >
+                    Update
+                </button>
+
+                <button type="button" class="btn btn-default"
+                        ng-click="deleteBtnClicked()"
+                        ng-hide="hideUpdateForm"
+                        >
+                    Delete
+                </button>
+                <button type="button" class="btn btn-default"
+                        ng-click="backBtnClicked()"
+                        >
+                    Back
+                </button>
+            </form>
+        </div>
+    </div>
+
+
+</body>
+</html>
